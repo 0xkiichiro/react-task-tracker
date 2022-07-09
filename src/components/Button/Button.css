@@ -1,0 +1,20 @@
+.btn {
+  padding: 5px 10px;
+  font-family: "Source Code Pro", monospace;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 2.5rem;
+  color: wheat;
+}
+
+.btn:active {
+  transform: scale(1.1);
+}
+
+.red {
+  background-color: #8c1f28;
+}
+
+.green {
+  background-color: #044040;
+}

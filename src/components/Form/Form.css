@@ -1,0 +1,16 @@
+.form-container {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  margin: 0.5rem;
+  padding: 5px 10px;
+  overflow: hidden;
+  width: 75%;
+  border: 2px solid goldenrod;
+  border-radius: 5px;
+}

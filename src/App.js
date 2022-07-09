@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import Container from "./components/Container/Container.styled";
+import Header from "./components/Header/Header.styled";
+import Button from "./components/Button/Button";
+import Form from "./components/Form/Form";
+
+import "./app.css";
+
+import { useState } from "react";
 
 function App() {
+  const [vis, setVis] = useState(false);
+  const [task, setTask] = useState("");
+  const [date, setdate] = useState("");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Container>
+        <Header>
+          <h1>Task Tracker</h1>
+          <Button vis={vis} setVis={setVis} />
+        </Header>
+        {vis && (
+          <main>
+            <Form />
+            {/* <button>Submit</button> */}
+          </main>
+        )}
+      </Container>
     </div>
   );
 }
