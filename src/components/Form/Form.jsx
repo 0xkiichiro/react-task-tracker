@@ -1,10 +1,21 @@
 import "./Form.css";
 
-const Form = ({ handleSubmit, handleClear }) => {
+const Form = ({ task, date, setTask, setDate, handleClear, handleSubmit }) => {
   return (
     <form className="form-container" onSubmit={handleSubmit}>
-      <input type="text" class="input" placeholder="Enter task" />
-      <input type="date" class="input" />
+      <input
+        type="text"
+        className="input"
+        value={task}
+        placeholder="Enter task"
+        onChange={(e) => setTask(e.target.value)}
+      />
+      <input
+        type="date"
+        className="input"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+      />
       <div className="button-container">
         <button className="btn submit" onClick={(e) => handleSubmit(e)}>
           Add
