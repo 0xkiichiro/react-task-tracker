@@ -14,3 +14,9 @@
   border: 2px solid goldenrod;
   border-radius: 5px;
 }
+
+.button-container {
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+}

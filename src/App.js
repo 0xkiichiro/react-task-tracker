@@ -12,6 +12,16 @@ function App() {
   const [task, setTask] = useState("");
   const [date, setdate] = useState("");
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("task added");
+  };
+
+  const handleClear = (e) => {
+    e.preventDefault();
+    console.log("task deleted");
+  };
+
   return (
     <div className="App">
       <Container>
@@ -21,8 +31,7 @@ function App() {
         </Header>
         {vis && (
           <main>
-            <Form />
-            {/* <button>Submit</button> */}
+            <Form handleSubmit={handleSubmit} handleClear={handleClear} />
           </main>
         )}
       </Container>

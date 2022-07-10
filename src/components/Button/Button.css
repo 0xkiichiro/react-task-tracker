@@ -5,6 +5,7 @@
   border-radius: 5px;
   margin: 2.5rem;
   color: wheat;
+  background-color: hsl(252, 51%, 23%);
 }
 
 .btn:active {
