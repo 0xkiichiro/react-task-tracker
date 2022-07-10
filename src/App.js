@@ -2,6 +2,7 @@ import Container from "./components/Container/Container.styled";
 import Header from "./components/Header/Header.styled";
 import Button from "./components/Button/Button";
 import Form from "./components/Form/Form";
+import Modal from "./components/Modal/Modal";
 
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import "./app.css";
@@ -15,6 +16,9 @@ function App() {
   const [taskList, setTaskList] = useState(
     JSON.parse(localStorage.getItem("tasks")) || []
   );
+  const [editTask, setEditTask] = useState(false);
+  const [placeholder, setPlaceholder] = useState("oi");
+  const [datePlaceholder, setDatePlaceholder] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,10 +27,11 @@ function App() {
       taskName: task,
       taskDate: date,
     };
+
     setTaskList([newTask, ...taskList]);
     // setTask("");
     // setDate("");
-    console.log(taskList);
+    // console.log(taskList);
   };
 
   useEffect(() => {
@@ -37,6 +42,13 @@ function App() {
     e.preventDefault();
     setTaskList([]);
     console.log("tasks deleted");
+  };
+
+  const transferId = (e) => {
+    // console.log(e);
+    // console.log(taskList.filter((item) => item.key == e)[0].taskName);
+    setPlaceholder(taskList.filter((item) => item.key == e)[0].taskName);
+    setDatePlaceholder(taskList.filter((item) => item.key == e)[0].taskDate);
   };
 
   return (
@@ -56,6 +68,16 @@ function App() {
             />
           </main>
         )}
+        <div className="modal-container">
+          {editTask && (
+            <Modal
+              placeholder={placeholder}
+              datePlaceholder={datePlaceholder}
+              setPlaceholder={setPlaceholder}
+              setDatePlaceholder={setDatePlaceholder}
+            />
+          )}
+        </div>
         <div className="task-list-container">
           {taskList.map((item) => {
             return (
@@ -65,13 +87,20 @@ function App() {
                   <p>{item.taskDate}</p>
                 </div>
                 <div className="icons-div">
-                  <AiOutlineEdit className="icon icon-edit" />
+                  <AiOutlineEdit
+                    className="icon icon-edit"
+                    onClick={(e) => {
+                      setEditTask(true);
+                      transferId(e.target.closest("li").id);
+                    }}
+                  />
                   <AiOutlineDelete
                     className="icon icon-delete"
                     onClick={(e) => {
                       setTaskList(
                         taskList.filter(
-                          (item) => item.id !== e.target.closest("li").id
+                          (item) =>
+                            item.key.toString() !== e.target.closest("li").id
                         )
                       );
                     }}
