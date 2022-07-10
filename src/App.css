@@ -41,3 +41,7 @@
 .icon-delete {
   color: red;
 }
+
+.modal-container {
+  width: 400px;
+}

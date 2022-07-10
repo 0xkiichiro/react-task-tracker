@@ -17,8 +17,9 @@ function App() {
     JSON.parse(localStorage.getItem("tasks")) || []
   );
   const [editTask, setEditTask] = useState(false);
-  const [placeholder, setPlaceholder] = useState("oi");
+  const [placeholder, setPlaceholder] = useState("");
   const [datePlaceholder, setDatePlaceholder] = useState();
+  const [dummyKey, setDummyKey] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,6 +50,7 @@ function App() {
     // console.log(taskList.filter((item) => item.key == e)[0].taskName);
     setPlaceholder(taskList.filter((item) => item.key == e)[0].taskName);
     setDatePlaceholder(taskList.filter((item) => item.key == e)[0].taskDate);
+    setDummyKey(taskList.filter((item) => item.key == e)[0].key);
   };
 
   return (
@@ -71,10 +73,16 @@ function App() {
         <div className="modal-container">
           {editTask && (
             <Modal
+              taskList={taskList}
+              setTaskList={setTaskList}
               placeholder={placeholder}
               datePlaceholder={datePlaceholder}
               setPlaceholder={setPlaceholder}
               setDatePlaceholder={setDatePlaceholder}
+              dummyKey={dummyKey}
+              setDummyKey={setDummyKey}
+              editTask={editTask}
+              setEditTask={setEditTask}
             />
           )}
         </div>
